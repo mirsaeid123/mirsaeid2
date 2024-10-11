@@ -14,19 +14,19 @@ Tins(19)=5; Tins(20)=3; Tins(21)=4; Tins(22)=9; Tins(23)=2; Tins(24)=5;
 Tins(25)=7; Tins(26)=5; Tins(27)=2; Tins(28)=4;
 
 Data=zeros(t_no,t_no); %Data transfer from ti to tj(MegaByte)
-Data(1,2)=10; Data(1,3)=8; Data(1,4)=11; Data(2,5)=9;
-Data(2,6)=8; Data(3,7)=6; Data(3,8)=7; Data(3,9)=5; 
-Data(4,10)=8; Data(5,11)=7; Data(5,12)=4;
-Data(6,13)=6; Data(6,14)=11; Data(7,14)=10; 
-Data(8,14)=12; Data(9,15)=5; Data(9,16)=9; 
-Data(10,16)=7; Data(10,17)=8; Data(10,18)=10;
-Data(11,18)=11; Data(12,20)=8; Data(13,20)=5;
-Data(14,21)=9; Data(15,22)=4; Data(16,22)=7;
-Data(17,23)=10; Data(17,24)=12; Data(18,24)=9;
-Data(19,25)=8; Data(20,25)=6; Data(21,25)=7;
-Data(21,26)=4; Data(22,28)=5; Data(23,27)=8;
-Data(24,27)=7; Data(25,28)=10; Data(26,28)=12;
-Data(27,28)=9;
+Data(1,2)=7; Data(1,3)=5; Data(1,4)=8; Data(2,5)=6;
+Data(2,6)=5; Data(3,7)=3; Data(3,8)=4; Data(3,9)=2; 
+Data(4,10)=5; Data(5,11)=4; Data(5,12)=2;
+Data(6,13)=5; Data(6,14)=8; Data(7,14)=7; 
+Data(8,14)=9; Data(9,15)=3; Data(9,16)=7; 
+Data(10,16)=5; Data(10,17)=6; Data(10,18)=8;
+Data(11,18)=8; Data(12,20)=5; Data(13,20)=3;
+Data(14,21)=7; Data(15,22)=2; Data(16,22)=5;
+Data(17,23)=8; Data(17,24)=10; Data(18,24)=7;
+Data(19,25)=6; Data(20,25)=4; Data(21,25)=5;
+Data(21,26)=2; Data(22,28)=3; Data(23,27)=6;
+Data(24,27)=5; Data(25,28)=8; Data(26,28)=10;
+Data(27,28)=7;
 
 BandW=zeros(vm_no,vm_no); %Band Width Bitween vmi to vmj(Megabit per second)
 BandW=[2000 2000 200 200 200 200 200 200 200 200 ; %BandW(vmi,vmj)
@@ -87,11 +87,16 @@ TPT_avg=zeros(t_no);
 for i=1:t_no
     TPT_avg(i)=sum(TPT(i , : ))/vm_no;
 end
-TPT_kol=mean(TPT_avg);
-
+%TPT_kol=mean(TPT_avg);
+TPT_kol=sum(TPT_avg)/t_no;
+TPT_kol
  BandW_vm=mean(BandW,1); %Average of Bandwidth
  BandW_avg=mean(BandW_vm);
-
+  BandW_avg
+ Data_avg=sum(Data); 
+ Data_kol=sum(Data_avg);
+ Data_kol
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %          PEFT Task Prioritizing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,7 +126,7 @@ for i=1:t_no
     SortOCT(1,i)=idx;
     IDX(1,idx)=1;
 end
-SortOCT(1,:)
+
 %%%%%%% Calculate FITNESS & MAKESPAN & allocate Virtual Machin 
 VM=zeros(t_no,1);
 Schedule=zeros(t_no,5);
